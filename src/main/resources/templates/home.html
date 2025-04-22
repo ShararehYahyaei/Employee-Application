@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgba(255, 182, 193, 0.2);
+            background-image: url('/employee image.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* پس‌زمینه سفید با کمی شفافیت */
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>Home Page</h1>
+    <a href="/employee%20image.png"></a>
+    <form method="get" action="/index">
+        <button type="submit">Get All Employees</button>
+    </form>
+    <form method="post" action="/addEmployee">
+        <button type="submit">Add New Employee</button>
+    </form>
+</div>
+
+</body>
+</html>

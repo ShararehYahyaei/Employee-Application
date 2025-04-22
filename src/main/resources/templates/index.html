@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+            background-color: #fff8dc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        thead {
+            background-color: #bdb76b;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        th {
+            color: white;
+            background-color: #6b8e23;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Employees List</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Employee First Name</th>
+            <th>Employee Last Name</th>
+            <th>Employee Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${listEmployees}">
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.email}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
