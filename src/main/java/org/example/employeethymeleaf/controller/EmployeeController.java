@@ -6,6 +6,7 @@ import org.example.employeethymeleaf.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -29,11 +30,16 @@ public class EmployeeController {
     }
 
 
+
+    @GetMapping("/addEmployee")
+    public String addEmployee(Model model) {
+        model.addAttribute("employee", new Employee());
+        return "addEmployee";
+    }
     //signUp an employee
     @PostMapping("/addEmployee")
-    public String addEmployee(Employee employee, Model model) {
-        Employee employee1 = employeeService.creaetEmployee(employee);
-        model.addAttribute("employee", employee1);
+    public String addEmployee(@ModelAttribute  ("employee")Employee employee) {
+       employeeService.creaetEmployee(employee);
         return "addEmployee";
     }
 

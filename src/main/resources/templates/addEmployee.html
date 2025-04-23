@@ -62,23 +62,20 @@
     </style>
 </head>
 <body>
-<form action="/addEmployee" method="post">
-    <h1>Add New Employee</h1>
-    <label>Employee First Name:</label>
-    <input name="firstName" type="text" >
+<form  th:action="@{/addEmployee}" th:object="${employee}" method="post">
+    <label for="firstName">First Name:</label>
+    <input type="text" th:field="*{firstName}" id="firstName" />
 
-    <label>Employee Last Name:</label>
-    <input name="lastName" type="text" >
+    <label for="lastName">Last Name:</label>
+    <input type="text" th:field="*{lastName}" id="lastName" />
 
-    <label>Employee Email:</label>
-    <input name="email" type="email" >
+    <label for="email">Email:</label>
+    <input type="email" th:field="*{email}" id="email" />
 
-    <button type="submit">Save New Employee</button>
-    <form>
-        <button type="button" onclick="window.location.href='/homePage'">Return to tha main page</button>
-    </form>
-
+    <button type="submit">Add Employee</button>
+    <button type="button" onclick="window.location.href='/homePage'">Return to the main page</button>
 
 </form>
+
 </body>
 </html>
