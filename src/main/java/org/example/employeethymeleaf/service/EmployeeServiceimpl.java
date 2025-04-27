@@ -29,4 +29,10 @@ public class EmployeeServiceimpl implements EmployeeService {
         employeeRepository.save(employee);
         return employee;
     }
+
+    @Override
+    @Transactional
+    public void deleteEmployee(Long id) {
+        employeeRepository.deleteById(id);
+    }
 }

@@ -5,9 +5,7 @@ import org.example.employeethymeleaf.model.Employee;
 import org.example.employeethymeleaf.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +39,14 @@ public class EmployeeController {
     public String addEmployee(@ModelAttribute  ("employee")Employee employee) {
        employeeService.creaetEmployee(employee);
         return "addEmployee";
+    }
+
+
+    @PostMapping("/deleteEmployee/{employeeId}")
+    public String deleteEmployee(@PathVariable (value = "employeeId") Long id) {
+        //todo call delete method from service
+        employeeService.deleteEmployee(id);
+        return "redirect:/index";
     }
 
 
