@@ -84,6 +84,16 @@
 <body>
 <div class="container">
     <h1>Employees List</h1>
+    <div>
+
+        <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=ASC'}">Sort by First Name ASC</a> |
+        <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=DESC'}">Sort by First Name DESC</a>
+        <a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDirection=ASC'}">Sort by Last Name ASC</a> |
+        <a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDirection=DESC'}">Sort by Last Name DESC</a> |
+        <a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDirection=ASC'}">Sort by Email ASC</a> |
+        <a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDirection=DESC'}">Sort by Email DESC</a>
+    </div>
+
 
     <table>
         <thead>
@@ -95,7 +105,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="employee : ${listEmployees}">
+        <tr th:each="employee : ${employees}">
             <td th:text="${employee.firstName}"></td>
             <td th:text="${employee.lastName}"></td>
             <td th:text="${employee.email}"></td>
@@ -114,7 +124,7 @@
 
     <div class="pagination">
         <span th:if="${currentPage > 1}">
-            <a th:href="@{/page/{pageNumber}(pageNumber=${currentPage - 1})}">Previous</a>
+      <a th:href="@{/page/{pageNumber}(pageNumber=${currentPage - 1}, sortField=${sortField}, sortDir=${sortDir})}">Previous</a>
         </span>
 
         <span th:each="i : ${#numbers.sequence(1, totalPages)}">
@@ -122,10 +132,11 @@
                th:text="${i}"
                th:classappend="${i == currentPage} ? 'active' : ''"></a>
         </span>
-
         <span th:if="${currentPage < totalPages}">
-            <a th:href="@{/page/{pageNumber}(pageNumber=${currentPage + 1})}">Next</a>
+
+<a th:href="@{/page/{pageNumber}(pageNumber=${currentPage + 1}, sortField=${sortField}, sortDir=${sortDir})}">Next</a>
         </span>
+
     </div>
 
 </div>

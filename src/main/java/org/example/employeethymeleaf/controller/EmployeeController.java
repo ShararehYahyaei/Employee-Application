@@ -18,13 +18,16 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    // display all employees
+    //todo  display all employees
 
     @GetMapping("/index")
     public String viewHomePage(Model model) {
         List<Employee> allEmployees = employeeService.getAllEmployees();
         model.addAttribute("listEmployees", allEmployees);
-      return findPaginated(1,model);
+        int pageNumber = 1; // default page number
+        String sortField = "firstName"; // default sorting field (or any other field)
+        String sortDirection = "ASC";
+      return findPaginated(pageNumber,sortField,sortDirection,model);
     }
 
 
@@ -51,15 +54,21 @@ public class EmployeeController {
 
     @GetMapping("/page/{pageNumber}")
     public String findPaginated(@PathVariable(value = "pageNumber") int pageNumber,
+                                @RequestParam(value = "sortField", defaultValue = "firstName") String sortField,
+                                @RequestParam(value = "sortDir", defaultValue = "asc") String sortDir,
                                 Model model) {
         int pageSize = 5;
-        Page<Employee> page = employeeService.findPaginated(pageNumber, pageSize);
+        Page<Employee> page = employeeService.findPaginated(pageNumber, pageSize, sortField, sortDir);
         List<Employee> employees = page.getContent();
+
         model.addAttribute("currentPage", pageNumber);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("employees", employees);
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
         return "index";
     }
-
 }
